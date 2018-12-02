@@ -25,7 +25,7 @@ import sys        import os      类似于c中的include头文件
 Data types:
 1 代码格式对齐，保持统一缩进格式
 2 一行多个语句，分号分割
-3 反斜杠\,扩展到下一行
+3 反斜杠\，扩展到下一行
 4 关键字
 function type() to check the type of the data
 
