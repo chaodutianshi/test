@@ -1,0 +1,289 @@
+1.交换变量值
+
+"""pythonic way of value swapping"""
+a, b = 5, 10
+print(a, b)
+a, b = b, a
+print(a, b)
+2.给列表元素创建新的分隔符
+
+a = ["Python", "is", "awesome"]
+print(" ".join(a))
+3.找列表中出现次数最多的元素
+
+""" most frequent element in a list """
+a = [1, 2, 3, 1, 2, 3, 2, 2, 4, 5, 1]
+print(max(set(a), key=a.count))
+
+""" using Counter from collections """
+from collections import Counter
+cnt = Counter(a)
+print(cnt.most_common(3))
+4.核对两个字符是否为回文
+
+from collections import Counter
+str1 = "123456"
+str2 = "654321"
+if Counter(str1) == Counter(str2):
+    print("回文")
+5.反向输出字符串
+
+""" 方法一 """
+a = "abcdefghijkmnopqrstuvwxyz"
+print(a[::-1])
+
+""" 方法二 """
+for char in reversed(a):
+    print(char)
+
+""" 方法三 """
+num = 123456789
+print(int(str(num)[::-1]))
+6.反向输出列表
+
+""" 方法一 """
+a = [5, 4, 3, 2, 1]
+print(a[::-1])
+
+""" 方法二 """
+for i in reversed(a):
+    print(i)
+7.转置2维数组
+
+original = [['a', 'b'], ['c', 'd'], ['e', 'f']]
+transposed = zip(*original)
+print(list(transposed))
+# [('a', 'c', 'e'), ('b', 'd', 'f')]
+8.链式比较
+
+s = 6
+print(3 < s < 8)
+print(2 == s < 10)
+# True
+# False
+9.函数的链式写法
+
+def product(a, b):
+    return a * b
+
+
+def add(a, b):
+    return a + b
+
+
+b = True
+print((product if b else add)(5, 7))
+# 35
+10.复制列表
+
+a = [1, 2, 3, 4, 5]
+b = a
+b[0] = 10
+print(b)
+# [10, 2, 3, 4, 5]
+
+b = a[:]
+b[0] = 10
+print(b)
+# [10, 2, 3, 4, 5]
+
+a = [1, 2, 3, 4, 5]
+print(list(a))
+# [1, 2, 3, 4, 5]
+
+print(a.copy())
+# [1, 2, 3, 4, 5]
+
+from copy import deepcopy
+l = [[1, 2], [3, 4]]
+l2 = deepcopy(l)
+print(l2)
+# [[1, 2], [3, 4]]
+11.字典的添加
+
+dicts = {'a': 1, 'b': 2}
+print(dicts.get('c', 3))
+# 3
+12.对字典的值排序
+
+d = {'a': 10, 'b': 20, 'c': 5, 'd': 1}
+print(sorted(d.items(), key=lambda x: x[1]))
+# [('d', 1), ('c', 5), ('a', 10), ('b', 20)]
+
+from operator import itemgetter
+print(sorted(d.items(), key=itemgetter(1)))
+# [('d', 1), ('c', 5), ('a', 10), ('b', 20)]
+13.for else结构
+
+a = [1, 2, 3, 4, 5]
+for i in a:
+    if i == 0:
+        break
+else:
+    print("did not break out of for loop")
+14.将列表转换为逗号分隔
+
+l = ['foo', 'bar', 'xyz']
+print(','.join(l))
+# foo,bar,xyz
+
+num = [2, 3, 4, 5, 10]
+print(','.join(map(str, num)))
+# 2,3,4,5,10
+
+data = [2, 'hello', 3, 3.4]
+print(','.join(map(str, data)))
+# 2,hello,3,3.4
+15.字典的合并
+
+d1 = {'a': 1}
+d2 = {'b': 2}
+# pyhton 3.5
+print({**d1, **d2})
+# {'a': 1, 'b': 2}
+
+print(dict(d1.items() | d2.items()))
+# {'b': 2, 'a': 1}
+
+d1.update(d2)
+print(d1)
+# {'a': 1, 'b': 2}
+16.找列表中最大、最小值下标
+
+li = [20, 50, 80, 10, 55]
+
+
+def minIndex(li):
+    return min(range(len(li)), key=li.__getitem__)
+
+
+def maxIndex(li):
+    return max(range(len(li)), key=li.__getitem__)
+
+
+print(minIndex(li))
+# 3
+print(maxIndex(li))
+# 2
+17.从列表中删除重复项
+
+li = [2, 2, 3, 1, 3, 5, 6, 1]
+
+newli = list(set(li))
+print(newli)
+# [1, 2, 3, 5, 6]
+
+from collections import OrderedDict
+li = ["foo", "bar", "bar", "foo"]
+print(list(OrderedDict.fromkeys(li).keys()))
+# ['foo', 'bar']
+all or any
+
+x = [True, True, False]
+if any(x):
+    print("至少有一个是True!")
+
+if all(x):
+    print("没有一个是False！")
+
+if any(x) and not all(x):
+    print("至少一个True和一个False！")
+
+# 至少有一个是True!
+# 至少一个True和一个False！
+emoji
+
+from emoji import emojize
+print(emojize(":thumbs_up"))
+**kwargs
+
+dic = {'a': 1, 'b': 2}
+
+
+def someFunction(a, b):
+    print(a + b)
+    return
+
+
+someFunction(**dic)
+someFunction(a=1, b=2)
+18.三元运算
+
+a = 1
+b = 5
+
+if (a > b):
+    print(a)
+else:
+    print(b)
+
+
+print(a) if a > b else print(b)
+19.阶乘
+
+i = 1
+p = 1
+n = input("输入：")
+while i <= int(n):
+    p = p * i
+    i += 1
+print("结果：" + str(p))
+20.set(集合)数据结构
+
+# set(集合)是一个非常有用的数据结构。它与列表(list)的行为类似，区别在于set不能包含重复的值。
+# 这在很多情况下非常有用。例如你可能想检查列表中是否包含重复的元素，
+# 你有两个选择，第一个需要使用for循环，就像这样：
+some_list = ['a', 'b', 'c', 'b', 'd', 'm', 'n', 'n']
+
+duplicates = []
+for value in some_list:
+    if some_list.count(value) > 1:
+        if value not in duplicates:
+            duplicates.append(value)
+
+print(duplicates)
+# 输出: ['b', 'n']
+
+
+# 但还有一种更简单更优雅的解决方案，那就是使用集合(sets)，你直接这样做：
+some_list = ['a', 'b', 'c', 'b', 'd', 'm', 'n', 'n']
+duplicates = set([x for x in some_list if some_list.count(x) > 1])
+print(duplicates)
+# 输出: set(['b', 'n'])
+
+
+# 集合还有一些其它方法，下面我们介绍其中一部分。
+
+21.# =========交集=========
+# 你可以对比两个集合的交集（两个集合中都有的数据），如下：
+valid = set(['yellow', 'red', 'blue', 'green', 'black'])
+input_set = set(['red', 'brown'])
+print(input_set.intersection(valid))
+# 输出: set(['red'])
+
+
+22.# =========差集===========
+# 你可以用差集(difference)找出无效的数据，相当于用一个集合减去另一个集合的数据，例如：
+valid = set(['yellow', 'red', 'blue', 'green', 'black'])
+input_set = set(['red', 'brown'])
+print(input_set.difference(valid))
+# 输出: set(['brown'])
+
+
+23.# 你也可以用符号来创建集合，如：
+a_set = {'red', 'blue', 'green'}
+print(type(a_set))
+# 输出: <type 'set'>
+
+24.ZIP
+
+keys = ['a', 'b', 'c']
+valus = [1, 2, 3]
+zippend = dict(zip(keys, valus))
+print(zippend)
+# {'a': 1, 'b': 2, 'c': 3}
+--------------------- 
+作者：陈海坤 
+来源：CSDN 
+原文：https://blog.csdn.net/chk218/article/details/84886587 
+版权声明：本文为博主原创文章，转载请附上博文链接！
